@@ -1479,6 +1479,12 @@ public class LatinIME extends InputMethodService implements
         }
     }
 
+    private void invokeEmojiMenu() {
+        // TODO: invoke an emoji menu
+        InputConnection ic = getCurrentInputConnection();
+        ic.commitText("\uD83D\uDCA9", 1);
+    }
+
     private boolean isShowingOptionDialog() {
         return mOptionsDialog != null && mOptionsDialog.isShowing();
     }
@@ -1999,6 +2005,9 @@ public class LatinIME extends InputMethodService implements
         case LatinKeyboardView.KEYCODE_COMPOSE:
             mComposeMode = !mComposeMode;
             mComposeBuffer.clear();
+            break;
+        case LatinKeyboardView.KEYCODE_EMOJI_MENU:
+            invokeEmojiMenu();
             break;
         case LatinKeyboardView.KEYCODE_NEXT_LANGUAGE:
             toggleLanguage(false, true);

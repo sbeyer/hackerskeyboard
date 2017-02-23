@@ -52,7 +52,8 @@ public class LatinKeyboardView extends LatinKeyboardBaseView {
     static final int KEYCODE_NEXT_LANGUAGE = -104;
     static final int KEYCODE_PREV_LANGUAGE = -105;
     static final int KEYCODE_COMPOSE = -10024;
-    
+    static final int KEYCODE_EMOJI_MENU = -10023;
+
 	// The following keycodes match (negative) KeyEvent keycodes.
     // Would be better to use the real KeyEvent values, but many
     // don't exist prior to the Honeycomb API (level 11).
@@ -238,6 +239,8 @@ public class LatinKeyboardView extends LatinKeyboardBaseView {
             return invokeOnKey(KEYCODE_OPTIONS_LONGPRESS);
         case KEYCODE_DPAD_CENTER:
             return invokeOnKey(KEYCODE_COMPOSE);
+        case KEYCODE_META_LEFT:
+            return invokeOnKey(KEYCODE_EMOJI_MENU);
         case '0':
             // Long pressing on 0 in phone number keypad gives you a '+'.
             if (getKeyboard() == mPhoneKeyboard) {
