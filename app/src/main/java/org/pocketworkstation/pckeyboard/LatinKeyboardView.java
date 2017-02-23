@@ -233,15 +233,17 @@ public class LatinKeyboardView extends LatinKeyboardBaseView {
     protected boolean onLongPress(Key key) {
         PointerTracker.clearSlideKeys();
 
-        int primaryCode = key.codes[0];
-        if (primaryCode == KEYCODE_OPTIONS) {
+        switch (key.codes[0]) {
+        case KEYCODE_OPTIONS:
             return invokeOnKey(KEYCODE_OPTIONS_LONGPRESS);
-        } else if (primaryCode == KEYCODE_DPAD_CENTER) {
+        case KEYCODE_DPAD_CENTER:
             return invokeOnKey(KEYCODE_COMPOSE);
-        } else if (primaryCode == '0' && getKeyboard() == mPhoneKeyboard) {
+        case '0':
             // Long pressing on 0 in phone number keypad gives you a '+'.
-            return invokeOnKey('+');
-        } else {
+            if (getKeyboard() == mPhoneKeyboard) {
+                return invokeOnKey('+');
+            }
+        default:
             return super.onLongPress(key);
         }
     }
